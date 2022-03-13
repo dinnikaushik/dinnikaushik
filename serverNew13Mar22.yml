@@ -1,5 +1,5 @@
 Description: >
-    Carlos Rivas / Udacity 2019
+    Dinesh Sharma / Udacity 2022
 
 Parameters:
 
@@ -125,4 +125,9 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
-        
+Outputs:   
+  publicDns:           
+    Description: A reference to the DNS name    from load balancer         
+    Value: !Join [ "", [ 'http://', !GetAtt WebAppLB.DNSName ]]         
+    Export:               
+      Name: !Sub ${EnvironmentName}-LB-DNSName
